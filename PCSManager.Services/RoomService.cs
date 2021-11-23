@@ -1,5 +1,6 @@
 ﻿using PCSManager.Data;
 using PCSManager.Models;
+using PCSManager.Models.Room;
 using PCSManager.WebMVC.Data;
 using System;
 using System.Collections.Generic;

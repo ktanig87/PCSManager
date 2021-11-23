@@ -1,4 +1,5 @@
 ﻿using PCSManager.Data;
+using PCSManager.Models.MoveInfo;
 using PCSManager.WebMVC.Data;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace PCSManager.Services
             }
         }
 
-        public MoveDetail GetMovebyId(int id)
+        public MoveInfoDetail GetMovebyId(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -62,7 +63,7 @@ namespace PCSManager.Services
                     ctx.Moves
                     .Single(e => e.Id == id && e.OwnerId == _userId);
                 return
-                    new MoveDetail
+                    new MoveInfoDetail
                     {
                         Id = entity.Id,
                         MoverName = entity.MoverName,
@@ -76,7 +77,7 @@ namespace PCSManager.Services
 
         }
 
-        public bool UpdateMove(MoveEdit model)
+        public bool UpdateMove(MoveInfoEdit model)
         {
 
             {
