@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PCSManager.Models.DamageClaim
 {
-    class DamageClaimCreate
+    public class DamageClaimCreate
     {
+        public string Description { get; set; }
+        public bool ClaimSubmitted { get; set; }
+        public string ClaimNotes { get; set; }
+        public bool ClaimResolved { get; set; }
+        public int InventoryId { get; set; }
     }
 }
