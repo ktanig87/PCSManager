@@ -240,6 +240,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
 
+    <Content Include="Views\Room\Index.cshtml" />
+    <Content Include="Views\Room\Create.cshtml" />
+    <Content Include="Views\Room\Details.cshtml" />
+    <Content Include="Views\Room\Edit.cshtml" />
+    <Content Include="Views\Room\Delete.cshtml" />
+
+
     <Content Include="Views\InventoryItem\Index.cshtml" />
     <Content Include="Views\InventoryItem\Create.cshtml" />
     <Content Include="Views\InventoryItem\Details.cshtml" />
@@ -251,6 +258,7 @@
     <Content Include="Views\Box\Details.cshtml" />
     <Content Include="Views\Box\Edit.cshtml" />
     <Content Include="Views\Box\Delete.cshtml" />
+
 
   </ItemGroup>
   <ItemGroup>
@@ -269,7 +277,6 @@
     <Folder Include="Views\InventoryItem\" />
 
     <Folder Include="Views\MoveInfo\" />
-    <Folder Include="Views\Room\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
