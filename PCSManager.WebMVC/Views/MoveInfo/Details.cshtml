@@ -1,0 +1,58 @@
+﻿@model PCSManager.Models.MoveInfo.MoveInfoDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h4>MoveInfoDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MoverName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoverName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DriverPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DriverPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TSPPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TSPPhone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
