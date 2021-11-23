@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PCSManager.Data;
 
 namespace PCSManager.WebMVC.Data
 {
@@ -24,7 +25,11 @@ namespace PCSManager.WebMVC.Data
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+        public DbSet<MoveInfo> Moves { get; set; }
+        public DbSet<Box> Boxes { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<InventoryItem> InventoryItems { get; set; }
+        public DbSet<DamageClaim> DamageClaims { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
