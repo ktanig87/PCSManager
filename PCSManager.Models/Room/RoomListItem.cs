@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace PCSManager.Models.Room
 {
-    class RoomListItem
+    public class RoomListItem
     {
+        public int RoomId { get; set; }
+        public string RoomName { get; set; }
     }
 }

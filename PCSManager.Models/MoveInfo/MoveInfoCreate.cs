@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PCSManager.Models.MoveInfo
 {
-    class MoveInfoCreate
+    public class MoveInfoCreate
     {
+        public string MoverName { get; set; }
+        public int DriverPhone { get; set; }
+        public DateTime PickupDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
+        public int TSPPhone { get; set; }
     }
 }
