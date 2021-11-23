@@ -70,6 +70,10 @@
       <Project>{37E40E3B-3323-4770-BE17-E30A397FACE3}</Project>
       <Name>PCSManager.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PCSManager.Models\PCSManager.Models.csproj">
+      <Project>{690b211e-704f-4473-aa07-8be4a5d0e58c}</Project>
+      <Name>PCSManager.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

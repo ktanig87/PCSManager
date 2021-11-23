@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PCSManager.Models.InventoryItem
 {
-    class InventoryItemDetail
+    public class InventoryItemDetail
     {
     }
 }

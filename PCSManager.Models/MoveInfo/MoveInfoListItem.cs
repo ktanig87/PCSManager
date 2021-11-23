@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PCSManager.Models.MoveInfo
 {
-    class MoveInfoListItem
+    public class MoveInfoListItem
     {
     }
 }

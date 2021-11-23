@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PCSManager.Models.DamageClaim
 {
-    class DamageClaimEdit
+    public class DamageClaimEdit
     {
     }
 }
