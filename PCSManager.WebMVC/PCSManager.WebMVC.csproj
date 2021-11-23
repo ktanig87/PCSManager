@@ -239,10 +239,14 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Box\Index.cshtml" />
+    <Content Include="Views\Box\Create.cshtml" />
+    <Content Include="Views\Box\Details.cshtml" />
+    <Content Include="Views\Box\Edit.cshtml" />
+    <Content Include="Views\Box\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Box\" />
     <Folder Include="Views\DamageClaim\" />
     <Folder Include="Views\InventoryItem\" />
     <Folder Include="Views\MoveInfo\" />

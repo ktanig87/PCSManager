@@ -1,0 +1,50 @@
+﻿@model PCSManager.Models.Box.BoxDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BoxId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoxId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BoxSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoxSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoveId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoveId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.BoxId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
