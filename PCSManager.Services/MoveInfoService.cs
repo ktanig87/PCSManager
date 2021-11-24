@@ -95,14 +95,18 @@ namespace PCSManager.Services
 
         public bool DeleteMove(int moveId)
         {
+            var entity =
+                ctx.Moves
+                .Single(e => e.Id == moveId && e.OwnerId == _userId);
 
-            {
-                var entity =
-                    ctx.Moves
-                    .Single(e => e.Id == moveId && e.OwnerId == _userId);
-                ctx.Moves.Remove(entity);
-                return ctx.SaveChanges() == 1;
-            }
+            var service = new RoomService(_userId);
+            var rooms = service.GetRooms().Where(r => r.MoveId == moveId).ToList();
+            foreach (var room in rooms)
+                service.DeleteRoom(room.RoomId);
+
+            ctx.Moves.Remove(entity);
+            return ctx.SaveChanges() == 1;
         }
+
     }
 }

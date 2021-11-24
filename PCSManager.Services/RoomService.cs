@@ -44,7 +44,6 @@ namespace PCSManager.Services
                     {
                         RoomId = e.RoomId,
                         RoomName = e.RoomName
-
                     }
                     );
             return query.ToArray();
@@ -83,6 +82,12 @@ namespace PCSManager.Services
             var entity =
                 ctx.Rooms
                 .Single(e => e.RoomId == roomId);
+
+            var service = new BoxService(_userId);
+            var boxes = service.GetBoxes().Where(b => b.RoomId == roomId).ToList();
+            foreach (var box in boxes)
+                service.DeleteBox(box.BoxId);
+
             ctx.Rooms.Remove(entity);
             return ctx.SaveChanges() == 1;
         }

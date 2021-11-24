@@ -22,7 +22,8 @@ namespace PCSManager.Services
             var entity =
                 new Box()
                 {
-                    BoxSize = model.BoxSize
+                    BoxSize = model.BoxSize,
+                    RoomId = model.RoomId
                 };
             {
                 ctx.Boxes.Add(entity);
@@ -39,7 +40,7 @@ namespace PCSManager.Services
                 new BoxListItem
                 {
                     BoxId = e.BoxId,
-                    RoomId = e.RoomId
+                    RoomId = (int)e.RoomId
 
                 });
             return query.ToArray();
@@ -53,8 +54,10 @@ namespace PCSManager.Services
             return
                 new BoxDetail
                 {
+                    BoxId = entity.BoxId,
                     BoxSize = entity.BoxSize,
-                    RoomId = entity.RoomId
+                    RoomId = (int)entity.RoomId,
+                    MoveId = entity.Room.MoveId
                 };
         }
 
@@ -64,7 +67,9 @@ namespace PCSManager.Services
             var entity =
                 ctx.Boxes
                 .Single(e => e.BoxId == model.BoxId);
+            entity.BoxId = model.BoxId;
             entity.BoxSize = model.BoxSize;
+            entity.RoomId = model.RoomId;
             return ctx.SaveChanges() == 1;
         }
 
@@ -73,6 +78,13 @@ namespace PCSManager.Services
         {
             var entity =
                 ctx.Boxes.Single(e => e.BoxId == boxId);
+            //var inventoryItems = ctx.InventoryItems.Where(i => i.BoxId == boxId).ToList();
+            //foreach (var items in inventoryItems)
+            //    ctx.InventoryItems.Remove(items);
+            var service = new InventoryItemService(_userId);
+            var items = service.GetInventoryItems().Where(i => i.BoxId == boxId).ToList();
+            foreach (var item in items)
+                service.DeleteInventoryItem(item.InventoryId);
             ctx.Boxes.Remove(entity);
             return ctx.SaveChanges() == 1;
         }

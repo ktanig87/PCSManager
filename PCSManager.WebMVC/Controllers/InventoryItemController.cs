@@ -14,7 +14,6 @@ namespace PCSManager.WebMVC.Controllers
         // GET: InventoryItem
         public ActionResult Index()
         {
-
             var service = CreateInventoryItemService();
             var model = service.GetInventoryItems();
             return View(model);
@@ -23,9 +22,7 @@ namespace PCSManager.WebMVC.Controllers
         //GET
         public ActionResult Create()
         {
-            ViewBag.Moves = PopulateMovesList();
-            ViewBag.Rooms = PopulateRoomsList();
-            ViewBag.Boxes = PopulateBoxesList();
+            PopulateDropDownLists();
             return View();
         }
 
@@ -35,7 +32,10 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Create(InventoryItemCreate model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
 
             var service = CreateInventoryItemService();
 
@@ -51,15 +51,12 @@ namespace PCSManager.WebMVC.Controllers
         {
             var svc = CreateInventoryItemService();
             var model = svc.GetItemById(id);
-
+            PopulateDropDownLists();
             return View(model);
         }
 
         public ActionResult Edit(int id)
-        {
-            ViewBag.Moves = PopulateMovesList();
-            ViewBag.Rooms = PopulateRoomsList();
-            ViewBag.Boxes = PopulateBoxesList();
+        {            
             var service = CreateInventoryItemService();
             var detail = service.GetItemById(id);
             var model =
@@ -74,6 +71,7 @@ namespace PCSManager.WebMVC.Controllers
                     BoxId = detail.BoxId,
                     RoomId = detail.RoomId
                 };
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -82,10 +80,14 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Edit(int id, InventoryItemEdit model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
             if (model.InventoryId != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
+                PopulateDropDownLists();
                 return View(model);
             }
 
@@ -98,6 +100,7 @@ namespace PCSManager.WebMVC.Controllers
             }
 
             ModelState.AddModelError("", "Your inventory could not be updated");
+            PopulateDropDownLists();
             return View(model);
         }
         [ActionName("Delete")]
@@ -105,7 +108,6 @@ namespace PCSManager.WebMVC.Controllers
         {
             var svc = CreateInventoryItemService();
             var model = svc.GetItemById(id);
-
             return View(model);
         }
 
@@ -121,7 +123,12 @@ namespace PCSManager.WebMVC.Controllers
             return RedirectToAction("index");
         }
 
-
+        private void PopulateDropDownLists()
+        {
+            ViewBag.Moves = PopulateMovesList();
+            ViewBag.Rooms = PopulateRoomsList();
+            ViewBag.Boxes = PopulateBoxesList();
+        }
 
         private List<SelectListItem> PopulateMovesList()
         {

@@ -24,7 +24,7 @@ namespace PCSManager.WebMVC.Controllers
         //GET
         public ActionResult Create()
         {
-            ViewBag.InventoryItems = PopulateInventoryList();
+            PopulateDropDownLists();
             return View();
         }
 
@@ -34,13 +34,17 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Create(DamageClaimCreate model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
             var service = CreateClaimService();
             if (service.CreateClaim(model))
             {
                 TempData["SaveResult"] = "Your Damage Claim was Created";
                 return RedirectToAction("index");
             };
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -48,13 +52,12 @@ namespace PCSManager.WebMVC.Controllers
         {
             var svc = CreateClaimService();
             var model = svc.GetClaimById(id);
+            PopulateDropDownLists();
             return View(model);
         }
 
         public ActionResult Edit(int id)
-        {
-
-            ViewBag.InventoryItems = PopulateInventoryList();
+        {          
             var service = CreateClaimService();
             var detail = service.GetClaimById(id);
             var model =
@@ -67,6 +70,7 @@ namespace PCSManager.WebMVC.Controllers
                     ClaimNotes = detail.ClaimNotes,
                     ClaimResolved = detail.ClaimResolved
                 };
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -75,10 +79,15 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Edit(int id, DamageClaimEdit model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
+
             if (model.ClaimId != id)
             {
                 ModelState.AddModelError("", "Invalid ID");
+                PopulateDropDownLists();
                 return View(model);
             }
 
@@ -89,6 +98,7 @@ namespace PCSManager.WebMVC.Controllers
                 return RedirectToAction("index");
             }
             ModelState.AddModelError("", "Your Damage Claim could not be updated");
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -101,8 +111,9 @@ namespace PCSManager.WebMVC.Controllers
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteBox(int id)
+        public ActionResult DeleteClaim(int id)
         {
             var service = CreateClaimService();
             service.DeleteClaim(id);
@@ -110,6 +121,10 @@ namespace PCSManager.WebMVC.Controllers
             return RedirectToAction("index");
         }
 
+        private void PopulateDropDownLists()
+        {
+            ViewBag.InventoryItems = PopulateInventoryList();
+        }
 
 
         private List<SelectListItem> PopulateInventoryList()

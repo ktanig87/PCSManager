@@ -46,7 +46,8 @@ namespace PCSManager.Services
                 {
                     InventoryId = e.InventoryId,
                     Name = e.Name,
-
+                    BoxId = (int)e.BoxId,
+                    RoomId = (int)e.Box.RoomId
                 }
                 );
             return query.ToArray();
@@ -67,7 +68,9 @@ namespace PCSManager.Services
                     ItemValue = entity.ItemValue,
                     HighValue = entity.HighValue,
                     UPC = entity.UPC,
-
+                    BoxId = (int)entity.BoxId,
+                    RoomId = (int)entity.Box.RoomId
+                    //add ternary
                 };
         }
 

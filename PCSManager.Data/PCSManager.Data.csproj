@@ -57,6 +57,23 @@
     <Compile Include="DamageClaim.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="InventoryItem.cs" />
+    <Compile Include="Migrations\202111232005059_InitialCreate.cs" />
+    <Compile Include="Migrations\202111232005059_InitialCreate.Designer.cs">
+      <DependentUpon>202111232005059_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111241831039_InitialMigration.cs" />
+    <Compile Include="Migrations\202111241831039_InitialMigration.Designer.cs">
+      <DependentUpon>202111241831039_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111242036235_UpdateNullable.cs" />
+    <Compile Include="Migrations\202111242036235_UpdateNullable.Designer.cs">
+      <DependentUpon>202111242036235_UpdateNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111242041123_Squiffle.cs" />
+    <Compile Include="Migrations\202111242041123_Squiffle.Designer.cs">
+      <DependentUpon>202111242041123_Squiffle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MoveInfo.cs" />
     <Compile Include="Box.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +82,20 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111232005059_InitialCreate.resx">
+      <DependentUpon>202111232005059_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111241831039_InitialMigration.resx">
+      <DependentUpon>202111241831039_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111242036235_UpdateNullable.resx">
+      <DependentUpon>202111242036235_UpdateNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111242041123_Squiffle.resx">
+      <DependentUpon>202111242041123_Squiffle.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

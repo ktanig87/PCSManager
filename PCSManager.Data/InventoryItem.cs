@@ -34,6 +34,6 @@ namespace PCSManager.Data
 
         public virtual Room Room { get; set; }
         [ForeignKey(nameof(Room))]
-        public int? RoomId { get; set; }
+        public int RoomId { get; set; }
     }
 }

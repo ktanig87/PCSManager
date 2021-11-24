@@ -24,9 +24,7 @@ namespace PCSManager.WebMVC.Controllers
         //GET
         public ActionResult Create()
         {
-
-            ViewBag.Moves = PopulateMovesList();
-            ViewBag.Rooms = PopulateRoomsList();
+            PopulateDropDownLists();
             return View();
         }
 
@@ -36,8 +34,12 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Create(BoxCreate model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
             var service = CreateBoxService();
+
             if (service.CreateBox(model))
             {
                 TempData["SaveResult"] = "Your Box was Created";
@@ -50,22 +52,23 @@ namespace PCSManager.WebMVC.Controllers
         {
             var svc = CreateBoxService();
             var model = svc.GetBoxId(id);
+            PopulateDropDownLists();
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            ViewBag.Moves = PopulateMovesList();
-            ViewBag.Rooms = PopulateRoomsList();
             var service = CreateBoxService();
             var detail = service.GetBoxId(id);
             var model =
                 new BoxEdit
                 {
+                    BoxId = detail.BoxId,
                     BoxSize = detail.BoxSize,
                     MoveId = detail.MoveId,
                     RoomId = detail.RoomId
                 };
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -74,10 +77,14 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Edit(int id, BoxEdit model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
             if (model.BoxId != id)
             {
                 ModelState.AddModelError("", "Invalid ID");
+                PopulateDropDownLists();
                 return View(model);
             }
 
@@ -88,9 +95,10 @@ namespace PCSManager.WebMVC.Controllers
                 return RedirectToAction("index");
             }
             ModelState.AddModelError("", "Your Box could not be updated");
+            PopulateDropDownLists();
             return View(model);
         }
-
+        
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
@@ -100,6 +108,7 @@ namespace PCSManager.WebMVC.Controllers
         }
 
         [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteBox(int id)
         {
@@ -124,6 +133,12 @@ namespace PCSManager.WebMVC.Controllers
             foreach (var room in service.GetRooms())
                 rooms.Add(new SelectListItem { Text = room.RoomId + " " + room.RoomName, Value = room.RoomId.ToString() });
             return rooms;
+        }
+
+        private void PopulateDropDownLists()
+        {
+            ViewBag.Moves = PopulateMovesList();
+            ViewBag.Rooms = PopulateRoomsList();
         }
         private BoxService CreateBoxService()
         {

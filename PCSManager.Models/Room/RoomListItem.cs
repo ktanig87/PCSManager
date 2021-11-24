@@ -8,6 +8,7 @@ namespace PCSManager.Models.Room
 {
     public class RoomListItem
     {
+        public int MoveId { get; set; }
         public int RoomId { get; set; }
         public string RoomName { get; set; }
     }

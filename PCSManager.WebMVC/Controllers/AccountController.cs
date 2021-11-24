@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PCSManager.WebMVC.Data;
 using PCSManager.WebMVC.Models;
 
 namespace PCSManager.WebMVC.Controllers

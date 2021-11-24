@@ -21,8 +21,8 @@ namespace PCSManager.WebMVC.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Moves = PopulateMovesList();
             var model = new RoomCreate();
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -31,7 +31,10 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Create(RoomCreate model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
             var service = CreateRoomService();
 
             if (service.CreateRoom(model))
@@ -46,12 +49,12 @@ namespace PCSManager.WebMVC.Controllers
         {
             var service = CreateRoomService();
             var model = service.GetRoombyId(id);
+            PopulateDropDownLists();
             return View(model);
         }
 
         public ActionResult Edit(int id)
-        {
-            ViewBag.Moves = PopulateMovesList();
+        {          
             var service = CreateRoomService();
             var detail = service.GetRoombyId(id);
             var model =
@@ -61,6 +64,7 @@ namespace PCSManager.WebMVC.Controllers
                     RoomName = detail.RoomName,
                     MoveId = detail.MoveId
                 };
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -69,10 +73,14 @@ namespace PCSManager.WebMVC.Controllers
         public ActionResult Edit(int id, RoomEdit model)
         {
             if (!ModelState.IsValid)
+            {
+                PopulateDropDownLists();
                 return View(model);
+            }
             if (model.RoomId != id)
             {
                 ModelState.AddModelError("", "Id does not match");
+                PopulateDropDownLists();
                 return View(model);
             }
             var service = CreateRoomService();
@@ -83,6 +91,7 @@ namespace PCSManager.WebMVC.Controllers
                 return RedirectToAction("index");
             }
             ModelState.AddModelError("", "Your Room could not be updated");
+            PopulateDropDownLists();
             return View(model);
         }
 
@@ -105,6 +114,10 @@ namespace PCSManager.WebMVC.Controllers
             return RedirectToAction("index");
         }
 
+        private void PopulateDropDownLists()
+        {
+            ViewBag.Moves = PopulateMovesList();
+        }
 
         private List<SelectListItem> PopulateMovesList()
         {
