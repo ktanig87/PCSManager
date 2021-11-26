@@ -73,6 +73,14 @@
     <Compile Include="Migrations\202111242041123_Squiffle.Designer.cs">
       <DependentUpon>202111242041123_Squiffle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111242115151_ClaimResolution.cs" />
+    <Compile Include="Migrations\202111242115151_ClaimResolution.Designer.cs">
+      <DependentUpon>202111242115151_ClaimResolution.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111242221445_HighValueListItems.cs" />
+    <Compile Include="Migrations\202111242221445_HighValueListItems.Designer.cs">
+      <DependentUpon>202111242221445_HighValueListItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MoveInfo.cs" />
     <Compile Include="Box.cs" />
@@ -95,6 +103,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111242041123_Squiffle.resx">
       <DependentUpon>202111242041123_Squiffle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111242115151_ClaimResolution.resx">
+      <DependentUpon>202111242115151_ClaimResolution.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111242221445_HighValueListItems.resx">
+      <DependentUpon>202111242221445_HighValueListItems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

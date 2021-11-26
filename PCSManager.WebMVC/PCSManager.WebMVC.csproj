@@ -259,6 +259,8 @@
     <Content Include="Views\Box\Edit.cshtml" />
     <Content Include="Views\Box\Delete.cshtml" />
     <Content Include="Views\Room\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\InventoryItem\HVList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DamageClaim\Index.cshtml" />

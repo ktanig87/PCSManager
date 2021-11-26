@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace PCSManager.Data
 {
+   // public enum ClaimResolvedType {no, yes, pending}
     public class DamageClaim
     {
         [Key]
@@ -16,6 +17,17 @@ namespace PCSManager.Data
         public bool ClaimSubmitted { get; set; }
         public string ClaimNotes { get; set; }
         public bool ClaimResolved { get; set; }
+            //get
+            //{
+            //    if (ClaimSubmitted == false)
+            //        return ClaimResolvedType.no;
+            //    return ClaimResolvedType.pending;
+            //}
+            
+            //if ClaimSubmitted == false
+            //return false
+            //else set;
+        
 
         public virtual InventoryItem InventoryItem { get; set; }
         [ForeignKey(nameof(InventoryItem))]

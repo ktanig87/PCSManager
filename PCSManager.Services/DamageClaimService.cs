@@ -45,7 +45,7 @@ namespace PCSManager.Services
                     {
                         ClaimId = e.ClaimId,
                         ClaimSubmitted = e.ClaimSubmitted,
-                        ClaimResolved = e.ClaimResolved,
+                       ClaimResolved = e.ClaimResolved,
                         InventoryId = e.InventoryId
                     });
             return query.ToArray();
@@ -75,7 +75,7 @@ namespace PCSManager.Services
             entity.Description = model.Description;
             entity.ClaimSubmitted = model.ClaimSubmitted;
             entity.ClaimNotes = model.ClaimNotes;
-            entity.ClaimResolved = model.ClaimResolved;
+           // entity.ClaimResolved = model.ClaimResolved;
             entity.InventoryId = model.InventoryId;
             return ctx.SaveChanges() == 1;
         }
