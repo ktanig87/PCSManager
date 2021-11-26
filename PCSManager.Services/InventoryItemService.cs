@@ -52,8 +52,25 @@ namespace PCSManager.Services
                 );
             return query.ToArray();
         }
-
-
+        
+        public IEnumerable<InventoryItemListItem> GetHVInventoryItems()
+        {
+            var query =
+                ctx.InventoryItems
+                .Where(i => i.ItemValue > 600)
+                .Select
+                (e =>
+                new InventoryItemListItem
+                {
+                    InventoryId = e.InventoryId,
+                    Name = e.Name,
+                    BoxId = (int)e.BoxId,
+                    RoomId = (int)e.Box.RoomId
+                }
+                );
+            return query.ToArray();
+        }
+        
         public InventoryItemDetail GetItemById(int id)
         {
             var entity =
@@ -69,8 +86,7 @@ namespace PCSManager.Services
                     HighValue = entity.HighValue,
                     UPC = entity.UPC,
                     BoxId = (int)entity.BoxId,
-                    RoomId = (int)entity.Box.RoomId
-                    //add ternary
+                    RoomId = (int)entity.Box.RoomId                 
                 };
         }
 

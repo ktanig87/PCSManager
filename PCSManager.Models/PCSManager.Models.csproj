@@ -80,5 +80,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PCSManager.Data\PCSManager.Data.csproj">
+      <Project>{37E40E3B-3323-4770-BE17-E30A397FACE3}</Project>
+      <Name>PCSManager.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

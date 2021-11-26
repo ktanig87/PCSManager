@@ -54,7 +54,16 @@ namespace PCSManager.WebMVC.Controllers
             PopulateDropDownLists();
             return View(model);
         }
-
+        
+       
+        public ActionResult HVList()
+        {
+            var svc = CreateInventoryItemService();
+            var model = svc.GetHVInventoryItems();
+            PopulateDropDownLists();
+            return View(model);
+        }
+        
         public ActionResult Edit(int id)
         {            
             var service = CreateInventoryItemService();
@@ -115,7 +124,7 @@ namespace PCSManager.WebMVC.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeleteItem(int id)
         {
             var service = CreateInventoryItemService();
             service.DeleteInventoryItem(id);
