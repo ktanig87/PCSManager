@@ -261,6 +261,7 @@
     <Content Include="Views\Room\Edit.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <Content Include="Views\InventoryItem\HVList.cshtml" />
+    <Content Include="Views\DamageClaim\UnresolvedList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\DamageClaim\Index.cshtml" />

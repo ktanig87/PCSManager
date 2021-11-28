@@ -51,6 +51,23 @@ namespace PCSManager.Services
             return query.ToArray();
         }
 
+        public IEnumerable<DamageClaimListItem> GetUnresolvedClaims()
+        {
+            var query =
+                ctx.DamageClaims
+                .Where(i => i.ClaimResolved == false)
+                .Select
+                (e =>
+                new DamageClaimListItem
+                {
+                    InventoryId = e.InventoryId,
+                    ClaimId = e.ClaimId
+            
+                }
+                );
+            return query.ToArray();
+        }
+
         public DamageClaimDetail GetClaimById(int id)
         {
             var entity =
@@ -75,7 +92,7 @@ namespace PCSManager.Services
             entity.Description = model.Description;
             entity.ClaimSubmitted = model.ClaimSubmitted;
             entity.ClaimNotes = model.ClaimNotes;
-           // entity.ClaimResolved = model.ClaimResolved;
+            entity.ClaimResolved = model.ClaimResolved;
             entity.InventoryId = model.InventoryId;
             return ctx.SaveChanges() == 1;
         }
