@@ -40,7 +40,9 @@ namespace PCSManager.Services
                 new BoxListItem
                 {
                     BoxId = e.BoxId,
-                    RoomId = (int)e.RoomId
+                    RoomId = (int)e.RoomId,
+                   
+
 
                 });
             return query.ToArray();
@@ -57,7 +59,9 @@ namespace PCSManager.Services
                     BoxId = entity.BoxId,
                     BoxSize = entity.BoxSize,
                     RoomId = (int)entity.RoomId,
-                    MoveId = entity.Room.MoveId
+                   // MoveId = entity.Room.MoveId,
+                    
+                    
                 };
         }
 

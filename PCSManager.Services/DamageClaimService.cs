@@ -61,8 +61,8 @@ namespace PCSManager.Services
                 new DamageClaimListItem
                 {
                     InventoryId = e.InventoryId,
-                    ClaimId = e.ClaimId
-            
+                    ClaimId = e.ClaimId,
+                    ClaimSubmitted = e.ClaimSubmitted            
                 }
                 );
             return query.ToArray();
