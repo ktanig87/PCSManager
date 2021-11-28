@@ -56,6 +56,13 @@ namespace PCSManager.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult UnresolvedList()
+        {
+            var svc = CreateClaimService();
+            var model = svc.GetUnresolvedClaims();
+            PopulateDropDownLists();
+            return View(model);
+        }
         public ActionResult Edit(int id)
         {          
             var service = CreateClaimService();
