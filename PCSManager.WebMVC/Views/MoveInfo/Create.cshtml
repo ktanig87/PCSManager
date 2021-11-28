@@ -4,15 +4,17 @@
     ViewBag.Title = "Create";
 }
 
+<h2>Add a PCS</h2>
+<h4>Time for a new adventure!</h4>
 
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>MoveInfoCreate</h4>
+     
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">

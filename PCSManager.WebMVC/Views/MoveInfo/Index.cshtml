@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
 }
 
+<h2>List of Moves</h2>
 
 
 <p>
@@ -11,13 +12,13 @@
 </p>
 @if (TempData.ContainsKey("SaveResult"))
 {
-<div class="alert alert-success fade in" role="alert">
+    <div class="alert alert-success fade in" role="alert">
 
-    <button type="button" class="close" data-dismiss="alert">
-        <span>&times;</span>
-    </button>
-    @TempData["SaveResult"]
-</div>}
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>}
 
 <table class="table">
     <tr>

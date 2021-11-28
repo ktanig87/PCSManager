@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PCSManager.WebMVC.Controllers
 {
+    [Authorize]
     public class InventoryItemController : Controller
     {
         // GET: InventoryItem

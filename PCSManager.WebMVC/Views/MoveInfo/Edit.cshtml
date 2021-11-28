@@ -4,15 +4,17 @@
     ViewBag.Title = "Edit";
 }
 
+<h2>Edit Your Move</h2>
+<h4> It's ok.  We know how orders change.</h4>
 
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>MoveInfoEdit</h4>
+     
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
