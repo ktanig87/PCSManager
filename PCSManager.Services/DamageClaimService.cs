@@ -38,7 +38,8 @@ namespace PCSManager.Services
         {
 
             var query =
-                ctx.DamageClaims.Select
+                ctx.DamageClaims.Where(e => e.InventoryItem.Room.MoveDetails.OwnerId == _userId)
+                .Select
                 (
                     e =>
                     new DamageClaimListItem
@@ -55,7 +56,7 @@ namespace PCSManager.Services
         {
             var query =
                 ctx.DamageClaims
-                .Where(i => i.ClaimResolved == false)
+                .Where(i => i.ClaimResolved == false && i.InventoryItem.Room.MoveDetails.OwnerId == _userId)
                 .Select
                 (e =>
                 new DamageClaimListItem
@@ -71,7 +72,7 @@ namespace PCSManager.Services
         public DamageClaimDetail GetClaimById(int id)
         {
             var entity =
-                ctx.DamageClaims.Single(e => e.ClaimId == id);
+                ctx.DamageClaims.Where(e => e.InventoryItem.Room.MoveDetails.OwnerId == _userId).Single(e => e.ClaimId == id);
             return
                 new DamageClaimDetail
                 {
@@ -87,7 +88,7 @@ namespace PCSManager.Services
         public bool UpdateClaim(DamageClaimEdit model)
         {
             var entity =
-                ctx.DamageClaims.Single(e => e.ClaimId == model.ClaimId);
+                ctx.DamageClaims.Where(e => e.InventoryItem.Room.MoveDetails.OwnerId == _userId).Single(e => e.ClaimId == model.ClaimId);
             entity.ClaimId = model.ClaimId;
             entity.Description = model.Description;
             entity.ClaimSubmitted = model.ClaimSubmitted;
@@ -100,7 +101,7 @@ namespace PCSManager.Services
         public bool DeleteClaim(int claimId)
         {
             var entity =
-                ctx.DamageClaims.Single(e => e.ClaimId == claimId);
+                ctx.DamageClaims.Where(e => e.InventoryItem.Room.MoveDetails.OwnerId == _userId).Single(e => e.ClaimId == claimId);
             ctx.DamageClaims.Remove(entity);
             return ctx.SaveChanges() == 1;
         }

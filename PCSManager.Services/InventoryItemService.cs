@@ -40,7 +40,8 @@ namespace PCSManager.Services
         public IEnumerable<InventoryItemListItem> GetInventoryItems()
         {
             var query =
-                ctx.InventoryItems.Select
+                ctx.InventoryItems.Where(e => e.Room.MoveDetails.OwnerId == _userId)
+                .Select
                 (e =>
                 new InventoryItemListItem
                 {
@@ -57,7 +58,7 @@ namespace PCSManager.Services
         {
             var query =
                 ctx.InventoryItems
-                .Where(i => i.ItemValue > 600)
+                .Where(e => e.Room.MoveDetails.OwnerId == _userId && e.ItemValue > 600)
                 .Select
                 (e =>
                 new InventoryItemListItem
@@ -74,7 +75,7 @@ namespace PCSManager.Services
         public InventoryItemDetail GetItemById(int id)
         {
             var entity =
-                ctx.InventoryItems.Single(e => e.InventoryId == id);
+                ctx.InventoryItems.Where(e => e.Room.MoveDetails.OwnerId == _userId).Single(e => e.InventoryId == id);
             return
                 new InventoryItemDetail
                 {
@@ -94,7 +95,7 @@ namespace PCSManager.Services
         public bool UpdateInventoryItem(InventoryItemEdit model)
         {
             var entity =
-                ctx.InventoryItems.Single(e => e.InventoryId == model.InventoryId);
+                ctx.InventoryItems.Where(e => e.Room.MoveDetails.OwnerId == _userId).Single(e => e.InventoryId == model.InventoryId);
             entity.InventoryId = model.InventoryId;
             entity.Name = model.Name;
             entity.Description = model.Description;
@@ -109,7 +110,7 @@ namespace PCSManager.Services
         public bool DeleteInventoryItem(int inventoryId)
         {
             var entity =
-                ctx.InventoryItems.Single(e => e.InventoryId == inventoryId);
+                ctx.InventoryItems.Where(e => e.Room.MoveDetails.OwnerId == _userId).Single(e => e.InventoryId == inventoryId);
             ctx.InventoryItems.Remove(entity);
             return ctx.SaveChanges() == 1;
         }

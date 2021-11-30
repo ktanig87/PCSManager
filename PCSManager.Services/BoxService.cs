@@ -35,13 +35,14 @@ namespace PCSManager.Services
         public IEnumerable<BoxListItem> GetBoxes()
         {
             var query =
-                ctx.Boxes.Select
+                ctx.Boxes.Where(e => e.Room.MoveDetails.OwnerId == _userId)
+                .Select
                 (e =>
                 new BoxListItem
                 {
                     BoxId = e.BoxId,
                     RoomId = (int)e.RoomId,
-                   
+                    RoomName = e.Room.RoomName                 
 
 
                 });
@@ -52,14 +53,16 @@ namespace PCSManager.Services
         public BoxDetail GetBoxId(int id)
         {
             var entity =
-                ctx.Boxes.Single(e => e.BoxId == id);
+                ctx.Boxes.Where(e => e.Room.MoveDetails.OwnerId == _userId)
+                .Single(e => e.BoxId == id);
             return
                 new BoxDetail
                 {
                     BoxId = entity.BoxId,
                     BoxSize = entity.BoxSize,
                     RoomId = (int)entity.RoomId,
-                   // MoveId = entity.Room.MoveId,
+                    MoveId = entity.Room.MoveId,                    
+                   RoomName = entity.Room.RoomName
                     
                     
                 };
@@ -69,7 +72,7 @@ namespace PCSManager.Services
         public bool UpdateBox(BoxEdit model)
         {
             var entity =
-                ctx.Boxes
+                ctx.Boxes.Where(e => e.Room.MoveDetails.OwnerId == _userId)
                 .Single(e => e.BoxId == model.BoxId);
             entity.BoxId = model.BoxId;
             entity.BoxSize = model.BoxSize;
@@ -81,7 +84,7 @@ namespace PCSManager.Services
         public bool DeleteBox(int boxId)
         {
             var entity =
-                ctx.Boxes.Single(e => e.BoxId == boxId);
+                ctx.Boxes.Where(e => e.Room.MoveDetails.OwnerId == _userId).Single(e => e.BoxId == boxId);
             //var inventoryItems = ctx.InventoryItems.Where(i => i.BoxId == boxId).ToList();
             //foreach (var items in inventoryItems)
             //    ctx.InventoryItems.Remove(items);

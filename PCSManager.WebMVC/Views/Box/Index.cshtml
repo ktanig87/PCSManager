@@ -27,24 +27,30 @@
         <th>
             @Html.DisplayNameFor(model => model.RoomId)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomName)
+
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BoxId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BoxId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BoxId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BoxId })
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.BoxId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RoomId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RoomName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.BoxId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.BoxId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.BoxId })
+    </td>
+</tr>
     }
 
 </table>

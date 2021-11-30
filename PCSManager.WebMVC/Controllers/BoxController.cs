@@ -66,7 +66,7 @@ namespace PCSManager.WebMVC.Controllers
                 {
                     BoxId = detail.BoxId,
                     BoxSize = detail.BoxSize,
-                    MoveId = detail.MoveId,
+                    //MoveId = detail.MoveId,
                     RoomId = detail.RoomId
                 };
             PopulateDropDownLists();

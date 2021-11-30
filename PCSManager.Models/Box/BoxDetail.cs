@@ -13,9 +13,15 @@ namespace PCSManager.Models.Box
         public int BoxId { get; set; }
         [Display(Name = "Box Size")]
         public string BoxSize { get; set; }
+
+
         [Display(Name = "Move")]
+        public string Move { get; set; }
         public int MoveId { get; set; }
-        [Display(Name = "Room")]
         public int RoomId { get; set; }
+        [Display(Name = "Room")]
+        public string RoomName { get; set; }
+
+      
     }
 }

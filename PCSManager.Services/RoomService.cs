@@ -35,9 +35,9 @@ namespace PCSManager.Services
         }
 
         public IEnumerable<RoomListItem> GetRooms()
-        {
+        {            
             var query =
-                ctx.Rooms
+                ctx.Rooms.Where( e=> e.MoveDetails.OwnerId ==_userId)
                 .Select(
                     e =>
                     new RoomListItem
@@ -54,6 +54,7 @@ namespace PCSManager.Services
         {
             var entity =
                 ctx.Rooms
+                .Where(e => e.MoveDetails.OwnerId == _userId)
                 .Single(e => e.RoomId == id);
             return
                 new RoomDetail
@@ -69,7 +70,7 @@ namespace PCSManager.Services
         public bool UpdateRoom(RoomEdit model)
         {
             var entity =
-                ctx.Rooms
+                ctx.Rooms.Where(e => e.MoveDetails.OwnerId == _userId)
                 .Single(e => e.RoomId == model.RoomId);
             entity.RoomId = model.RoomId;
             entity.RoomName = model.RoomName;
@@ -80,7 +81,7 @@ namespace PCSManager.Services
         public bool DeleteRoom(int roomId)
         {
             var entity =
-                ctx.Rooms
+                ctx.Rooms.Where(e => e.MoveDetails.OwnerId == _userId)
                 .Single(e => e.RoomId == roomId);
 
             var service = new BoxService(_userId);
